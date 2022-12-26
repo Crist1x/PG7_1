@@ -74,10 +74,13 @@ start_screen()
 
 
 def load_level(filename):
-    with open(filename, 'r') as mapFile:
-        level_map = [line.strip() for line in mapFile]
-    max_width = max(map(len, level_map))
-    return [line.ljust(max_width, '.') for line in level_map]
+    try:
+        with open(filename, 'r') as mapFile:
+            level_map = [line.strip() for line in mapFile]
+        max_width = max(map(len, level_map))
+        return [line.ljust(max_width, '.') for line in level_map]
+    except:
+        print("Файл не найден")
 
 tile_images = {
     'wall': load_image('box.png'),
